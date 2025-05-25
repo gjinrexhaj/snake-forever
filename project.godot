@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="snake-forever"
-run/main_scene="uid://dbtse6li2hg5d"
+run/main_scene="uid://bq5gu4e03cf45"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/ui/icon.svg"
 
 [display]
 

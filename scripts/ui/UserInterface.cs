@@ -11,10 +11,17 @@ public partial class UserInterface : Control
 	[Export] private QuitConfirmScreen _quitConfirmScreen;
 	
 	// get audiplayer instance
-	[Export] private AudioStreamPlayer _audioPlayer;
+	[Export] private AudioStreamPlayer _clickPlayer;
+	[Export] private AudioStreamPlayer _navPlayer;
+	[Export] private AudioStreamPlayer _applyPlayer;
 	
 	// bool to track if game is paused
 	public bool GamePaused = false;
+	
+	// bool to track current loaded settings
+	private Vector2I _newResolution = new (1920, 1080);
+	private bool _newVsync = true;
+	
 	
 	// Set up listeners to all events
 	// TODO: fully implement settigns and quit
@@ -27,6 +34,9 @@ public partial class UserInterface : Control
 		_quickMenuScreen.Quit += ShowQuitConfirmWindow;
 		// quick settings screen bindings
 		_quickSettingsScreen.Return += ExitSettingsWindow;
+		_quickSettingsScreen.Resolution += ChangeResolution;
+		_quickSettingsScreen.Vsync += ToggleVsync;
+		_quickSettingsScreen.Apply += ApplyChanges;
 		
 		// quit confirm screen bindings
 		_quitConfirmScreen.Return += ExitConfirmWindow;
@@ -38,7 +48,7 @@ public partial class UserInterface : Control
 	// Implement event methods
 	private void ResumeGame()
 	{
-		_audioPlayer.Play();
+		_clickPlayer.Play();
 		GD.Print("RESUME THE GAME");
 		GamePaused = false;
 		_quickMenuScreen.Visible = false;
@@ -46,7 +56,7 @@ public partial class UserInterface : Control
 	
 	private void ShowSettingsWindow()
 	{
-		_audioPlayer.Play();
+		_clickPlayer.Play();
 		GD.Print("SHOW SETTINGS WINDOW");
 		_quickSettingsScreen.Show();
 		_quickSettingsScreen.ResolutionButton.GrabFocus();
@@ -55,16 +65,39 @@ public partial class UserInterface : Control
 	
 	private void ShowQuitConfirmWindow()
 	{
-		_audioPlayer.Play();
+		_clickPlayer.Play();
 		GD.Print("SHOW QUIT CONFIRM");
 		_quitConfirmScreen.Show();
 		_quickMenuScreen.Hide();
 		_quitConfirmScreen.ReturnButton.GrabFocus();
 	}
 
+	private void ChangeResolution(Vector2I resolution)
+	{
+		_clickPlayer.Play();
+		GD.Print("resolution: ", resolution);
+		_newResolution = resolution;
+	}
+
+	private void ToggleVsync(bool enabled)
+	{
+		_clickPlayer.Play();
+		GD.Print("vsync: ", enabled);
+		_newVsync = enabled;
+	}
+
+	private void ApplyChanges()
+	{
+		_applyPlayer.Play();
+		// ADD CODE HERE TO CHANGE GAME SETTINGS USING NEW VAL
+		GD.Print("applying changes with, res: ", _newResolution, " and vsync: ", _newVsync);
+		DisplayServer.WindowSetSize(_newResolution);
+		DisplayServer.WindowSetVsyncMode(_newVsync ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
+	}
+
 	private void ExitSettingsWindow()
 	{
-		_audioPlayer.Play();
+		_clickPlayer.Play();
 		GD.Print("EXIT SETTINGS WINDOW");
 		_quickMenuScreen.Show();
 		_quickSettingsScreen.Hide();
@@ -73,12 +106,14 @@ public partial class UserInterface : Control
 	
 	private void ExitConfirmWindow()
 	{
-		_audioPlayer.Play();
+		_clickPlayer.Play();
 		GD.Print("EXIT QUIT CONFIRM WINDOW");
 		_quickMenuScreen.Show();
 		_quickMenuScreen.QuitButton.GrabFocus();
 		_quitConfirmScreen.Hide();
 	}
+	
+	
 
 
 	// Unsubscribe to events when UI is no longer in scene tree
@@ -87,6 +122,9 @@ public partial class UserInterface : Control
 		_quickMenuScreen.Resume -= ResumeGame;
 		_quickMenuScreen.Settings -= ShowSettingsWindow;
 		_quickMenuScreen.Quit -= ShowQuitConfirmWindow;
+		_quickSettingsScreen.Resolution -= ChangeResolution;
+		_quickSettingsScreen.Vsync -= ToggleVsync;
+		_quickSettingsScreen.Apply -= ApplyChanges;
 		_quickSettingsScreen.Return -= ExitSettingsWindow;
 		_quitConfirmScreen.Return -= ExitConfirmWindow;
 	}
@@ -105,6 +143,7 @@ public partial class UserInterface : Control
 		}
 		if (Input.IsActionJustPressed("pause"))
 		{
+			_clickPlayer.Play();
 			GD.Print("pause the game!");
 			GamePaused = true;
 			_quickMenuScreen.Visible = true;
