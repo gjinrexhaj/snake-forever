@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dtkd8yp0elvs7"]
+
+[ext_resource type="FontFile" uid="uid://ewwsbrafutxe" path="res://assets/fonts/LessPerfectDOSVGA.ttf" id="1_s1hyc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rdd43"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s1hyc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uw25j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_765p2"]
+
+[resource]
+default_font = ExtResource("1_s1hyc")
+/fonts/dos = ExtResource("1_s1hyc")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_focus_color = Color(0.94902, 0.94902, 0, 1)
+Button/colors/font_hover_color = Color(0, 0.94902, 0.94902, 1)
+Button/colors/font_pressed_color = Color(0, 1, 0, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_rdd43")
+Button/styles/hover = SubResource("StyleBoxEmpty_s1hyc")
+Button/styles/normal = SubResource("StyleBoxEmpty_uw25j")
+Button/styles/pressed = SubResource("StyleBoxEmpty_765p2")
