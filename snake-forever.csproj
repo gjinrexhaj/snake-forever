@@ -4,7 +4,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>snakeforever</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="scripts\ui\" />
-  </ItemGroup>
 </Project>

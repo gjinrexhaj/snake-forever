@@ -13,7 +13,7 @@
 [resource]
 default_font = ExtResource("1_s1hyc")
 /fonts/dos = ExtResource("1_s1hyc")
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(0.94902, 0.94902, 0, 1)
 Button/colors/font_hover_color = Color(0, 0.94902, 0.94902, 1)
 Button/colors/font_pressed_color = Color(0, 1, 0, 1)
