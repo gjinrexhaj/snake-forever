@@ -1,0 +1,166 @@
+[gd_scene load_steps=6 format=3 uid="uid://rr4vhcfmvv1g"]
+
+[ext_resource type="Theme" uid="uid://dtkd8yp0elvs7" path="res://themes/new_theme.tres" id="1_7d8n8"]
+[ext_resource type="Script" uid="uid://2mlcmybl8xa7" path="res://scripts/ui/main-menu-interface/MainMenuInterface.cs" id="2_p7xig"]
+[ext_resource type="AudioStream" uid="uid://d085y8wmg2d03" path="res://assets/sfx/click.wav" id="3_8oftl"]
+[ext_resource type="AudioStream" uid="uid://xrhb1yblp8p2" path="res://assets/sfx/nav.wav" id="4_wqok4"]
+[ext_resource type="AudioStream" uid="uid://cebextn4bok1y" path="res://assets/sfx/apply.wav" id="6_wqok4"]
+
+[node name="MainMenuInterface" type="Control" node_paths=PackedStringArray("StartButton", "SettingsButton", "AboutButton", "QuitButton", "ResolutionButton", "VsyncButton", "ApplyChangesButton", "SettingsReturnButton", "AboutReturnButton", "ResolutionLabel", "MenuWindow", "SettingsWindow", "AboutWindow", "_clickPlayer", "_navPlayer", "_applyPlayer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7d8n8")
+script = ExtResource("2_p7xig")
+StartButton = NodePath("MenuWindow/StartButton")
+SettingsButton = NodePath("MenuWindow/SettingsButton")
+AboutButton = NodePath("MenuWindow/AboutButton")
+QuitButton = NodePath("MenuWindow/QuitButton")
+ResolutionButton = NodePath("SettingsWindow/HBoxContainer/ResolutionButton")
+VsyncButton = NodePath("SettingsWindow/VsyncButton")
+ApplyChangesButton = NodePath("SettingsWindow/ApplyButton")
+SettingsReturnButton = NodePath("SettingsWindow/ReturnButton")
+AboutReturnButton = NodePath("AboutWindow/Return")
+ResolutionLabel = NodePath("SettingsWindow/HBoxContainer/Label")
+MenuWindow = NodePath("MenuWindow")
+SettingsWindow = NodePath("SettingsWindow")
+AboutWindow = NodePath("AboutWindow")
+_clickPlayer = NodePath("ClickPlayer")
+_navPlayer = NodePath("NavPlayer")
+_applyPlayer = NodePath("ApplyPlayer")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8oftl")
+
+[node name="NavPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wqok4")
+
+[node name="ApplyPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wqok4")
+
+[node name="MenuWindow" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_right = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Separator" type="Control" parent="MenuWindow"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="MenuWindow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SNAKE FOREVER"
+horizontal_alignment = 1
+
+[node name="GameSubtitle" type="Label" parent="MenuWindow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.554954, 0.554954, 0.554954, 1)
+text = "Developed by Gjin"
+horizontal_alignment = 1
+
+[node name="Separator2" type="Control" parent="MenuWindow"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MenuWindow"]
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="MenuWindow"]
+layout_mode = 2
+text = "Settings"
+
+[node name="AboutButton" type="Button" parent="MenuWindow"]
+layout_mode = 2
+text = "About"
+
+[node name="QuitButton" type="Button" parent="MenuWindow"]
+layout_mode = 2
+text = "Quit"
+
+[node name="SettingsWindow" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -18.0
+offset_right = 78.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsWindow"]
+layout_mode = 2
+
+[node name="ResolutionButton" type="Button" parent="SettingsWindow/HBoxContainer"]
+layout_mode = 2
+text = "Window Size"
+
+[node name="Separator" type="Control" parent="SettingsWindow/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsWindow/HBoxContainer"]
+layout_mode = 2
+text = "1920x1080"
+
+[node name="VsyncButton" type="Button" parent="SettingsWindow"]
+layout_mode = 2
+text = "Vsync ON"
+alignment = 0
+
+[node name="ApplyButton" type="Button" parent="SettingsWindow"]
+layout_mode = 2
+text = "Apply Changes"
+alignment = 0
+
+[node name="Separator" type="Control" parent="SettingsWindow"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ReturnButton" type="Button" parent="SettingsWindow"]
+layout_mode = 2
+text = "Return"
+alignment = 0
+
+[node name="AboutWindow" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Separator" type="Control" parent="AboutWindow"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AboutWindow"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MADE IN GODOT
+
+Movement: WASD or ↑←↓→
+Select option: Enter
+Pause game: Esc
+"
+horizontal_alignment = 1
+
+[node name="Return" type="Button" parent="AboutWindow"]
+layout_mode = 2
+text = "Press Enter to return"

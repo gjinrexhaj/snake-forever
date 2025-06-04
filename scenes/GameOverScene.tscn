@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmonhgdkbml1l"]
+
+[ext_resource type="Theme" uid="uid://dtkd8yp0elvs7" path="res://themes/new_theme.tres" id="1_7kyk7"]
+[ext_resource type="Script" uid="uid://vdfwkg54jbf4" path="res://scripts/ui/GameOverInterface.cs" id="2_1ubts"]
+[ext_resource type="Texture2D" uid="uid://3r24x3lfmbyn" path="res://assets/ui/ui_nine_patch.png" id="2_tgqjs"]
+
+[node name="GameOverInterface" type="Control" node_paths=PackedStringArray("_newGameButton", "_quitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7kyk7")
+script = ExtResource("2_1ubts")
+_newGameButton = NodePath("QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer/NewGameButton")
+_quitButton = NodePath("QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer/QuitButton")
+
+[node name="QuickMenuScreen" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -48.0
+offset_right = 80.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="QuickMenuScreen"]
+custom_minimum_size = Vector2(160, 96)
+layout_mode = 2
+texture = ExtResource("2_tgqjs")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="MarginContainer" type="MarginContainer" parent="QuickMenuScreen/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuickMenuScreen/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Separator" type="Control" parent="QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="NewGameButton" type="Button" parent="QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+alignment = 0

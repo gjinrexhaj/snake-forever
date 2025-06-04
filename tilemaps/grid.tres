@@ -1,0 +1,49 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://jj8porcqwce8"]
+
+[ext_resource type="Texture2D" uid="uid://gfphm24d11vi" path="res://assets/grid/grid.png" id="1_jw3fa"]
+[ext_resource type="Texture2D" uid="uid://b43fs7chv58l" path="res://assets/grid/grid-rd-border.png" id="1_wi4rg"]
+[ext_resource type="Texture2D" uid="uid://texb1b13m5k6" path="res://assets/grid/grid-wh-border.png" id="2_weedn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc2jb"]
+texture = ExtResource("1_wi4rg")
+texture_region_size = Vector2i(17, 17)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fnj8a"]
+texture = ExtResource("2_weedn")
+texture_region_size = Vector2i(17, 17)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lte6m"]
+texture = ExtResource("1_jw3fa")
+texture_region_size = Vector2i(17, 17)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[resource]
+sources/1 = SubResource("TileSetAtlasSource_pc2jb")
+sources/2 = SubResource("TileSetAtlasSource_fnj8a")
+sources/3 = SubResource("TileSetAtlasSource_lte6m")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq5gu4e03cf45"]
+
+[ext_resource type="Script" uid="uid://b4vy6qgyewvt0" path="res://scripts/game/Game.cs" id="1_qbsmt"]
+[ext_resource type="PackedScene" uid="uid://boaohxpgtda1v" path="res://scenes/GameInstance.tscn" id="2_cpr0p"]
+[ext_resource type="PackedScene" uid="uid://rr4vhcfmvv1g" path="res://scenes/MainMenuInterface.tscn" id="2_qbsmt"]
+[ext_resource type="PackedScene" uid="uid://cmonhgdkbml1l" path="res://scenes/GameOverScene.tscn" id="4_aug50"]
+[ext_resource type="AudioStream" uid="uid://d085y8wmg2d03" path="res://assets/sfx/click.wav" id="4_s0nni"]
+[ext_resource type="AudioStream" uid="uid://dqkcdgpsk75iu" path="res://assets/sfx/titleboot.wav" id="5_s0nni"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("_startGameSoundPlayer", "_enterTitleSoundPlayer")]
+script = ExtResource("1_qbsmt")
+_startGameSoundPlayer = NodePath("StartGameSound")
+_enterTitleSoundPlayer = NodePath("EnterTitleScreenSound")
+_gameScenePacked = ExtResource("2_cpr0p")
+_mainMenuScenePacked = ExtResource("2_qbsmt")
+_gameOverScenePacked = ExtResource("4_aug50")
+
+[node name="StartGameSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s0nni")
+
+[node name="EnterTitleScreenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s0nni")

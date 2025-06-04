@@ -1,0 +1,231 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbtse6li2hg5d"]
+
+[ext_resource type="Theme" uid="uid://dtkd8yp0elvs7" path="res://themes/new_theme.tres" id="1_c5ldg"]
+[ext_resource type="Script" uid="uid://uqsat2rnfbsp" path="res://scripts/ui/popup-interface/PopupInterface.cs" id="2_tm54r"]
+[ext_resource type="AudioStream" uid="uid://d085y8wmg2d03" path="res://assets/sfx/click.wav" id="3_bl3kl"]
+[ext_resource type="AudioStream" uid="uid://xrhb1yblp8p2" path="res://assets/sfx/nav.wav" id="4_suyo7"]
+[ext_resource type="AudioStream" uid="uid://cebextn4bok1y" path="res://assets/sfx/apply.wav" id="5_fyub1"]
+[ext_resource type="Script" uid="uid://cx1ghbi3skouk" path="res://scripts/ui/popup-interface/QuickMenuScreen.cs" id="6_ylhck"]
+[ext_resource type="Texture2D" uid="uid://3r24x3lfmbyn" path="res://assets/ui/ui_nine_patch.png" id="7_spn2h"]
+[ext_resource type="Script" uid="uid://daxkivjv80shs" path="res://scripts/ui/popup-interface/QuickSettingsScreen.cs" id="8_o3cug"]
+[ext_resource type="Script" uid="uid://drka6yixiiaxc" path="res://scripts/ui/popup-interface/QuitConfirmScreen.cs" id="9_aflls"]
+
+[node name="PopupInterface" type="Control" node_paths=PackedStringArray("_quickMenuScreen", "_quickSettingsScreen", "_quitConfirmScreen", "_clickPlayer", "_navPlayer", "_applyPlayer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c5ldg")
+script = ExtResource("2_tm54r")
+_quickMenuScreen = NodePath("PopupMenu/QuickMenuScreen")
+_quickSettingsScreen = NodePath("PopupMenu/QuickSettingsScreen")
+_quitConfirmScreen = NodePath("PopupMenu/QuitConfirmScreen")
+_clickPlayer = NodePath("ClickPlayer")
+_navPlayer = NodePath("NavPlayer")
+_applyPlayer = NodePath("ApplyPlayer")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bl3kl")
+
+[node name="NavPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_suyo7")
+
+[node name="ApplyPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fyub1")
+
+[node name="PopupMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuickMenuScreen" type="MarginContainer" parent="PopupMenu" node_paths=PackedStringArray("ResumeButton", "SettingsButton", "QuitButton")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("6_ylhck")
+ResumeButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/ResumeButton")
+SettingsButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/SettingsButton")
+QuitButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/QuitButton")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PopupMenu/QuickMenuScreen"]
+custom_minimum_size = Vector2(160, 112)
+layout_mode = 2
+texture = ExtResource("7_spn2h")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupMenu/QuickMenuScreen/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/QuickMenuScreen/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PopupMenu/QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+alignment = 0
+
+[node name="SettingsButton" type="Button" parent="PopupMenu/QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+alignment = 0
+
+[node name="Separator" type="Control" parent="PopupMenu/QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="QuitButton" type="Button" parent="PopupMenu/QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+alignment = 0
+
+[node name="Label" type="Label" parent="PopupMenu/QuickMenuScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 2
+
+[node name="QuickSettingsScreen" type="MarginContainer" parent="PopupMenu" node_paths=PackedStringArray("ResolutionButton", "VsyncButton", "ApplyButton", "ReturnButton", "ResolutionLabel")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("8_o3cug")
+ResolutionButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/ResolutionDropdown")
+VsyncButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/VsyncToggle")
+ApplyButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/ApplyButton")
+ReturnButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/ReturnButton")
+ResolutionLabel = NodePath("NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Label")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PopupMenu/QuickSettingsScreen"]
+custom_minimum_size = Vector2(224, 128)
+layout_mode = 2
+texture = ExtResource("7_spn2h")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupMenu/QuickSettingsScreen/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResolutionDropdown" type="Button" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Window Size"
+alignment = 0
+
+[node name="Label" type="Label" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1920x1080"
+horizontal_alignment = 2
+
+[node name="VsyncToggle" type="Button" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vsync ON"
+alignment = 0
+
+[node name="Separator" type="Control" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ApplyButton" type="Button" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Apply"
+alignment = 0
+
+[node name="ReturnButton" type="Button" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+alignment = 0
+
+[node name="Label" type="Label" parent="PopupMenu/QuickSettingsScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+horizontal_alignment = 2
+
+[node name="QuitConfirmScreen" type="MarginContainer" parent="PopupMenu" node_paths=PackedStringArray("ReturnButton", "QuitButton")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("9_aflls")
+ReturnButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/ReturnButton")
+QuitButton = NodePath("NinePatchRect/MarginContainer/VBoxContainer/QuitButton")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PopupMenu/QuitConfirmScreen"]
+custom_minimum_size = Vector2(160, 112)
+layout_mode = 2
+texture = ExtResource("7_spn2h")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupMenu/QuitConfirmScreen/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/QuitConfirmScreen/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PopupMenu/QuitConfirmScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ARE YOU SURE?"
+horizontal_alignment = 1
+
+[node name="Separator" type="Control" parent="PopupMenu/QuitConfirmScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ReturnButton" type="Button" parent="PopupMenu/QuitConfirmScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="PopupMenu/QuitConfirmScreen/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+alignment = 0
