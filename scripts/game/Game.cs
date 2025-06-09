@@ -40,7 +40,6 @@ public partial class Game : Node
 		AddChild(_gameScene);
 		//_gameScene = _gameScenePacked.Instantiate();
 		GD.Print($"IS _gameScene VALID? {IsInstanceIdValid(_gameScene.GetInstanceId())}");
-		
 	}
 
 	private void GameOver()
@@ -54,6 +53,8 @@ public partial class Game : Node
 	{
 		StaticEventManager.StartGame -= StartGameMethod;
 		StaticEventManager.ReturnToMainMenu -= ReturnToMainMenu;
+		StaticEventManager.GameOver -= GameOver;
+		StaticEventManager.StartNewGame -= StartNewGame;
 	}
 
 	

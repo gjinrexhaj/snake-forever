@@ -36,7 +36,7 @@ public partial class GameInstance : Node
 		GD.Print("game instance initialized");
 		GD.Print($"IS _spawner VALID? {IsInstanceIdValid(_spawner.GetInstanceId())}");
 		
-		
+
 	}
 
 	private void TailAdded(Tail tail)
@@ -75,6 +75,12 @@ public partial class GameInstance : Node
 		{
 			_snakeParts[i].MoveTo(_snakeParts[i - 1].LastPosition);
 		}
+	}
+
+	public override void _ExitTree()
+	{
+		StaticEventManager.FoodCollide -= FoodCollide;
+		StaticEventManager.TailAdded -= TailAdded;
 	}
 
 	public override void _PhysicsProcess(double delta)
