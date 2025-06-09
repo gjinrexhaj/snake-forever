@@ -9,6 +9,8 @@ public partial class GameInstance : Node
 	[Export] private Bounds _boundaries;
 	[Export] private Spawner _spawner;
 	[Export] private Label _scoreLabel;
+	[Export] private AudioStreamPlayer2D _musicPlayer;
+	[Export] private AudioStreamPlayer2D _foodEatPlayer;
 
 	private double _timeBetweenMoves = 1000.0;
 	private double _timeSinceLastMove = 0.0;
@@ -35,7 +37,8 @@ public partial class GameInstance : Node
 		_gamePaused = false;
 		GD.Print("game instance initialized");
 		GD.Print($"IS _spawner VALID? {IsInstanceIdValid(_spawner.GetInstanceId())}");
-		
+		_musicPlayer.Play();
+
 
 	}
 
@@ -59,6 +62,8 @@ public partial class GameInstance : Node
 		// update score
 		_score++;
 		_scoreLabel.Text = $"SCORE: {_score}";
+		
+		_foodEatPlayer.Play();
 		
 
 	}
@@ -101,7 +106,12 @@ public partial class GameInstance : Node
 	{
 		if (_gamePaused)
 		{
+			_musicPlayer.SetVolumeDb(-15.0f);
 			return;
+		}
+		else
+		{
+			_musicPlayer.SetVolumeDb(0.0f);
 		}
 		if (Input.IsActionPressed("ui_right"))
 		{
